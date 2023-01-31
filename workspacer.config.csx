@@ -96,6 +96,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("GenshinImpact.exe"));
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("Bitwarden.exe"));
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("ConEmu64.exe"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("Explorer.EXE"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Genshin Impact"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Window Spy"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Save As"));

@@ -234,7 +234,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
         manager.Subscribe(winShift, Keys.Subtract, () => gapPlugin.DecrementOuterGap(), "decrement outer gap");
 
 		// Other shortcuts
-		manager.Subscribe(winCtrl, Keys.N, () => context.Workspaces.FocusedWorkspace.ResetLayout(), "reset layout");
+        manager.Subscribe(winCtrl, Keys.N, () => context.Workspaces.FocusedWorkspace.ResetLayout(), "reset layout");
         manager.Subscribe(winCtrl, Keys.P, () => actionMenu.ShowMenu(actionMenuBuilder), "show menu");
         manager.Subscribe(winShift, Keys.Escape, () => context.Enabled = !context.Enabled, "toggle enabled/disabled");
         manager.Subscribe(winShift, Keys.I, () => context.ToggleConsoleWindow(), "toggle console window");

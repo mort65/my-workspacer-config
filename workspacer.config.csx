@@ -28,7 +28,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.CanMinimizeWindows = true;
 
 	/* Gap */
-	var gap = barHeight - 8;
+	var gap = barHeight - 10;
 	var gapPlugin = context.AddGap(new GapPluginConfig() { InnerGap = gap, OuterGap = gap / 2, Delta = gap / 2 });
 
 	/* Bar */
@@ -47,7 +47,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		RightWidgets = () => new IBarWidget[]
 		{
 			//new BatteryWidget(),
-			new TimeWidget(1000, "dd MMM HH:mm:ss"),
+			new TimeWidget(1000, "ddd dd MMM HH:mm:ss"),
 			new ActiveLayoutWidget(),
 		}
 	});
@@ -73,7 +73,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		(wsNames[0], defaultLayouts()),
 		(wsNames[1], defaultLayouts()),
 		(wsNames[2], defaultLayouts()),
-		(wsNames[3], new ILayoutEngine[] { new FullLayoutEngine(), new TallLayoutEngine(), new VertLayoutEngine(), new HorzLayoutEngine(), }),
+		(wsNames[3], new ILayoutEngine[] { new FullLayoutEngine(), new DwindleLayoutEngine(), new VertLayoutEngine(), new HorzLayoutEngine(), }),
 		(wsNames[4], defaultLayouts()),
 	};
 

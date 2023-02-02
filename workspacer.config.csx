@@ -96,6 +96,8 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Genshin Impact"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Window Spy"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Save As"));
+	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Copying..."));
+	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Moving..."));
 	context.WindowRouter.AddFilter((window) => !window.Class.Equals("ShellTrayWnd"));
 	context.WindowRouter.AddFilter((window) => !window.Class.Equals("MozillaDialogClass"));
 	

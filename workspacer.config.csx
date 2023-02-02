@@ -22,7 +22,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var barHeight = 19;
 	var fontName = "Cascadia Code PL";
 	var background = new Color(0x0, 0x0, 0x0);
-	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 📺", "5: 🌸" };
+	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸" };
 
 	/* Config */
 	context.CanMinimizeWindows = false;
@@ -73,8 +73,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		(wsNames[0], defaultLayouts()),
 		(wsNames[1], defaultLayouts()),
 		(wsNames[2], defaultLayouts()),
-		(wsNames[3], new ILayoutEngine[] { new FullLayoutEngine(), new DwindleLayoutEngine(), new VertLayoutEngine(), new HorzLayoutEngine(), }),
-		(wsNames[4], defaultLayouts()),
+		(wsNames[3], defaultLayouts()),
 	};
 
 	foreach ((string name, ILayoutEngine[] layouts) in workspaces)
@@ -93,6 +92,8 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("steamwebhelper.exe"));
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("steam.exe"));
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("calc1.exe"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("mpc-hc64.exe"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("vlc.exe"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Genshin Impact"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Window Spy"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Save As"));
@@ -109,9 +110,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.WindowRouter.RouteProcessName("librewolf", wsNames[1]);
 	context.WindowRouter.RouteProcessName("brave", wsNames[1]);
 	context.WindowRouter.RouteProcessName("notepad++", wsNames[2]);
-	context.WindowRouter.RouteProcessName("mpc-hc64", wsNames[3]);
-	context.WindowRouter.RouteProcessName("vlc", wsNames[3]);
-	context.WindowRouter.RouteProcessName("tixati", wsNames[4]);
+	context.WindowRouter.RouteProcessName("tixati", wsNames[3]);
 
 	/* Action menu */
 	var actionMenu = context.AddActionMenu(new ActionMenuPluginConfig()
@@ -250,11 +249,21 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		manager.Subscribe(win, Keys.D3, () => context.Workspaces.SwitchToWorkspace(2), "switch to workspace 3");
 		manager.Subscribe(win, Keys.D4, () => context.Workspaces.SwitchToWorkspace(3), "switch to workspace 4");
 		manager.Subscribe(win, Keys.D5, () => context.Workspaces.SwitchToWorkspace(4), "switch to workspace 5");
+		manager.Subscribe(win, Keys.D6, () => context.Workspaces.SwitchToWorkspace(5), "switch to workspace 6");
+		manager.Subscribe(win, Keys.D7, () => context.Workspaces.SwitchToWorkspace(6), "switch to workspace 7");
+		manager.Subscribe(win, Keys.D8, () => context.Workspaces.SwitchToWorkspace(7), "switch to workspace 8");
+		manager.Subscribe(win, Keys.D9, () => context.Workspaces.SwitchToWorkspace(8), "switch to workspace 9");
+		manager.Subscribe(win, Keys.D0, () => context.Workspaces.SwitchToWorkspace(9), "switch to workspace 10");
 		manager.Subscribe(winShift, Keys.D1, () => context.Workspaces.MoveFocusedWindowToWorkspace(0), "switch focused window to workspace 1");
 		manager.Subscribe(winShift, Keys.D2, () => context.Workspaces.MoveFocusedWindowToWorkspace(1), "switch focused window to workspace 2");
 		manager.Subscribe(winShift, Keys.D3, () => context.Workspaces.MoveFocusedWindowToWorkspace(2), "switch focused window to workspace 3");
 		manager.Subscribe(winShift, Keys.D4, () => context.Workspaces.MoveFocusedWindowToWorkspace(3), "switch focused window to workspace 4");
 		manager.Subscribe(winShift, Keys.D5, () => context.Workspaces.MoveFocusedWindowToWorkspace(4), "switch focused window to workspace 5");
+		manager.Subscribe(winShift, Keys.D6, () => context.Workspaces.MoveFocusedWindowToWorkspace(5), "switch focused window to workspace 6");
+		manager.Subscribe(winShift, Keys.D7, () => context.Workspaces.MoveFocusedWindowToWorkspace(6), "switch focused window to workspace 7");
+		manager.Subscribe(winShift, Keys.D8, () => context.Workspaces.MoveFocusedWindowToWorkspace(7), "switch focused window to workspace 8");
+		manager.Subscribe(winShift, Keys.D9, () => context.Workspaces.MoveFocusedWindowToWorkspace(8), "switch focused window to workspace 9");
+		manager.Subscribe(winShift, Keys.D0, () => context.Workspaces.MoveFocusedWindowToWorkspace(9), "switch focused window to workspace 10");
 		
 	};
 	setKeybindings();

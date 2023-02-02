@@ -91,12 +91,11 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("ConEmu64.exe"));
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("Explorer.EXE"));
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("steamwebhelper.exe"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("steam.exe"));
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("calc1.exe"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Genshin Impact"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Window Spy"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Save As"));
-
-	// The following filter means that Edge will now open on the correct display
 	context.WindowRouter.AddFilter((window) => !window.Class.Equals("ShellTrayWnd"));
 	context.WindowRouter.AddFilter((window) => !window.Class.Equals("MozillaDialogClass"));
 	
@@ -110,7 +109,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.WindowRouter.RouteProcessName("notepad++", wsNames[2]);
 	context.WindowRouter.RouteProcessName("mpc-hc64", wsNames[3]);
 	context.WindowRouter.RouteProcessName("vlc", wsNames[3]);
-	context.WindowRouter.RouteProcessName("steam", wsNames[4]);
+	context.WindowRouter.RouteProcessName("tixati", wsNames[4]);
 
 	/* Action menu */
 	var actionMenu = context.AddActionMenu(new ActionMenuPluginConfig()

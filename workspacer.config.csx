@@ -25,7 +25,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 📺", "5: 🌸" };
 
 	/* Config */
-	context.CanMinimizeWindows = true;
+	context.CanMinimizeWindows = false;
 
 	/* Gap */
 	var gap = barHeight - 10;
@@ -102,13 +102,14 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	
 
 	/* Routes */
+	context.WindowRouter.RouteProcessName("TE64", wsNames[0]);
+	context.WindowRouter.RouteProcessName("Explorer++", wsNames[0]);
 	context.WindowRouter.RouteProcessName("firefox", wsNames[1]);
 	context.WindowRouter.RouteProcessName("librewolf", wsNames[1]);
 	context.WindowRouter.RouteProcessName("brave", wsNames[1]);
 	context.WindowRouter.RouteProcessName("notepad++", wsNames[2]);
 	context.WindowRouter.RouteProcessName("mpc-hc64", wsNames[3]);
 	context.WindowRouter.RouteProcessName("vlc", wsNames[3]);
-	context.WindowRouter.RouteProcessName("Steam", wsNames[4]);
 	context.WindowRouter.RouteProcessName("steam", wsNames[4]);
 
 	/* Action menu */

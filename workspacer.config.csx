@@ -96,6 +96,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("vlc.exe"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Genshin Impact"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Window Spy"));
+	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Validating Nexus Connection"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Save As"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Copying..."));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Moving..."));
@@ -111,6 +112,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.WindowRouter.RouteProcessName("brave", wsNames[1]);
 	context.WindowRouter.RouteProcessName("notepad++", wsNames[2]);
 	context.WindowRouter.RouteProcessName("tixati", wsNames[3]);
+	context.WindowRouter.RouteProcessName("ModOrganizer", wsNames[3]);
 
 	/* Action menu */
 	var actionMenu = context.AddActionMenu(new ActionMenuPluginConfig()

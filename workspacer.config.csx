@@ -6,6 +6,7 @@
 #r "C:\Program Files\workspacer\plugins\workspacer.FocusIndicator\workspacer.FocusIndicator.dll"
 
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using workspacer;
@@ -268,6 +269,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		manager.Subscribe(winShift, Keys.D8, () => context.Workspaces.MoveFocusedWindowToWorkspace(7), "switch focused window to workspace 8");
 		manager.Subscribe(winShift, Keys.D9, () => context.Workspaces.MoveFocusedWindowToWorkspace(8), "switch focused window to workspace 9");
 		manager.Subscribe(winShift, Keys.D0, () => context.Workspaces.MoveFocusedWindowToWorkspace(9), "switch focused window to workspace 10");
+		manager.Subscribe(winCtrl, Keys.W, () => Process.Start("C:\\Program Files\\AutoHotkey\\WindowSpy.exe"), "start \"Window Spy\"");
 		
 	};
 	setKeybindings();

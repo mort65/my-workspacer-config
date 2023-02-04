@@ -6,9 +6,9 @@
 #r "C:\Program Files\workspacer\plugins\workspacer.FocusIndicator\workspacer.FocusIndicator.dll"
 
 using System;
+using System.Linq;
 using System.Diagnostics;
 using System.Collections.Generic;
-using System.Linq;
 using workspacer;
 using workspacer.Bar;
 using workspacer.Bar.Widgets;

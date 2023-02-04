@@ -82,20 +82,20 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	}
 
 	/* Filters */
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("1Password.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("pinentry.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("GenshinImpact.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("SkyrimSE.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("Bitwarden.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("ConEmu64.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("Explorer.EXE"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("steamwebhelper.exe"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("vlc.exe"));
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("steam.exe"));
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("calc1.exe"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("pinentry.exe"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("SkyrimSE.exe"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("ConEmu64.exe"));
 	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("mpc-hc64.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("vlc.exe"));
-	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Genshin Impact"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("Explorer.EXE"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("1Password.exe"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("Bitwarden.exe"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("GenshinImpact.exe"));
+	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("steamwebhelper.exe"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Window Spy"));
+	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Genshin Impact"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Validating Nexus Connection"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Save As"));
 	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Copying..."));
@@ -107,10 +107,12 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	/* Routes */
 	context.WindowRouter.RouteProcessName("TE64", wsNames[0]);
 	context.WindowRouter.RouteProcessName("Explorer++", wsNames[0]);
+	context.WindowRouter.RouteProcessName("brave", wsNames[1]);
+	context.WindowRouter.RouteProcessName("vivaldi", wsNames[1]);
 	context.WindowRouter.RouteProcessName("firefox", wsNames[1]);
 	context.WindowRouter.RouteProcessName("librewolf", wsNames[1]);
-	context.WindowRouter.RouteProcessName("brave", wsNames[1]);
 	context.WindowRouter.RouteProcessName("notepad++", wsNames[2]);
+	context.WindowRouter.RouteProcessName("sublime_text", wsNames[2]);
 	context.WindowRouter.RouteProcessName("tixati", wsNames[3]);
 	context.WindowRouter.RouteProcessName("ModOrganizer", wsNames[3]);
 

@@ -6,6 +6,7 @@
 #r "C:\Program Files\workspacer\plugins\workspacer.FocusIndicator\workspacer.FocusIndicator.dll"
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -24,6 +25,18 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var fontName = "Cascadia Code PL";
 	var background = new Color(0x0, 0x0, 0x0);
 	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸" };
+	string[] allowedFileNames = 
+	{ 
+		"te64", "brave", "vivaldi", "explorer++", "firefox", "librewolf", "notepad++", 
+		"sublime_text", "tixati", "modorganizer", "notepad", 
+	};
+	/* not used
+	string[] disallowedFileNames = 
+	{ 
+		"vlc", "steam", "calc1", "pinentry", "skyrimse", "conemu64", "steamwebhelper",
+		"mpc-hc64", "explorer", "1Password", "bitwarden", "genshinimpact", "windowspy", 
+	};
+	*/
 
 	/* Config */
 	context.CanMinimizeWindows = false;
@@ -83,26 +96,14 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	}
 
 	/* Filters */
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("vlc.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("steam.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("calc1.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("pinentry.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("SkyrimSE.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("ConEmu64.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("mpc-hc64.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("Explorer.EXE"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("1Password.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("Bitwarden.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("GenshinImpact.exe"));
-	context.WindowRouter.AddFilter((window) => !window.ProcessFileName.Equals("steamwebhelper.exe"));
-	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Window Spy"));
-	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Genshin Impact"));
-	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Validating Nexus Connection"));
-	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Save As"));
-	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Copying..."));
-	context.WindowRouter.AddFilter((window) => !window.Title.Equals("Moving..."));
+	context.WindowRouter.AddFilter((window) => !window.Title.ToLower().Equals("save as"));
+	context.WindowRouter.AddFilter((window) => !window.Title.ToLower().Equals("moving..."));
+	context.WindowRouter.AddFilter((window) => !window.Title.ToLower().Equals("copying..."));
+	context.WindowRouter.AddFilter((window) => !window.Title.ToLower().Equals("validating nexus connection"));
 	context.WindowRouter.AddFilter((window) => !window.Class.Equals("ShellTrayWnd"));
 	context.WindowRouter.AddFilter((window) => !window.Class.Equals("MozillaDialogClass"));
+	context.WindowRouter.AddFilter((window) => allowedFileNames.Contains(Path.GetFileNameWithoutExtension(window.ProcessFileName.ToLower())));
+	//context.WindowRouter.AddFilter((window) => !disallowedFileNames.Contains(Path.GetFileNameWithoutExtension(window.ProcessFileName.ToLower())));
 	
 
 	/* Routes */
@@ -269,7 +270,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		manager.Subscribe(winShift, Keys.D8, () => context.Workspaces.MoveFocusedWindowToWorkspace(7), "switch focused window to workspace 8");
 		manager.Subscribe(winShift, Keys.D9, () => context.Workspaces.MoveFocusedWindowToWorkspace(8), "switch focused window to workspace 9");
 		manager.Subscribe(winShift, Keys.D0, () => context.Workspaces.MoveFocusedWindowToWorkspace(9), "switch focused window to workspace 10");
-		manager.Subscribe(winCtrl, Keys.W, () => Process.Start("C:\\Program Files\\AutoHotkey\\WindowSpy.exe"), "start \"Window Spy\"");
+		manager.Subscribe(winCtrl, Keys.X, () => Process.Start("C:\\Program Files\\AutoHotkey\\WindowSpy.exe"), "start \"Window Spy\"");
 		
 	};
 	setKeybindings();

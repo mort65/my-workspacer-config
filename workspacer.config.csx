@@ -25,18 +25,19 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var fontName = "Cascadia Code PL";
 	var background = new Color(0x0, 0x0, 0x0);
 	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸" };
+	var useAllowedList = true;
+	/* only used if useAllowedList is true */
 	string[] allowedFileNames = 
 	{ 
 		"te64", "brave", "vivaldi", "explorer++", "firefox", "librewolf", "notepad++", 
 		"sublime_text", "tixati", "modorganizer", "notepad", 
 	};
-	/* not used
+	/* only used if useAllowedList is false */
 	string[] disallowedFileNames = 
 	{ 
 		"vlc", "steam", "calc1", "pinentry", "skyrimse", "conemu64", "steamwebhelper",
 		"mpc-hc64", "explorer", "1Password", "bitwarden", "genshinimpact", "windowspy", 
 	};
-	*/
 
 	/* Config */
 	context.CanMinimizeWindows = false;
@@ -102,8 +103,14 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.WindowRouter.AddFilter((window) => !window.Title.ToLower().Equals("validating nexus connection"));
 	context.WindowRouter.AddFilter((window) => !window.Class.Equals("ShellTrayWnd"));
 	context.WindowRouter.AddFilter((window) => !window.Class.Equals("MozillaDialogClass"));
-	context.WindowRouter.AddFilter((window) => allowedFileNames.Contains(Path.GetFileNameWithoutExtension(window.ProcessFileName.ToLower())));
-	//context.WindowRouter.AddFilter((window) => !disallowedFileNames.Contains(Path.GetFileNameWithoutExtension(window.ProcessFileName.ToLower())));
+	if (useAllowedList) 
+	{
+		context.WindowRouter.AddFilter((window) => allowedFileNames.Contains(Path.GetFileNameWithoutExtension(window.ProcessFileName.ToLower())));
+	}
+	else
+	{
+		context.WindowRouter.AddFilter((window) => !disallowedFileNames.Contains(Path.GetFileNameWithoutExtension(window.ProcessFileName.ToLower())));
+	}
 	
 
 	/* Routes */

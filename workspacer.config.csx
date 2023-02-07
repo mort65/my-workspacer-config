@@ -26,13 +26,13 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var background = new Color(0x0, 0x0, 0x0);
 	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸" };
 	var useAllowedList = true;
-	/* only used if useAllowedList is true */
+	/* only used if useAllowedList is true (Names should be lowercase) */
 	string[] allowedFileNames = 
 	{ 
 		"te64", "brave", "vivaldi", "explorer++", "firefox", "librewolf", "notepad++", 
-		"sublime_text", "tixati", "modorganizer", "notepad", 
+		"sublime_text", "tixati", "modorganizer", "notepad", "vortex", 
 	};
-	/* only used if useAllowedList is false */
+	/* only used if useAllowedList is false (Names should be lowercase) */
 	string[] disallowedFileNames = 
 	{ 
 		"vlc", "steam", "calc1", "pinentry", "skyrimse", "conemu64", "steamwebhelper",
@@ -124,6 +124,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.WindowRouter.RouteProcessName("sublime_text", wsNames[2]);
 	context.WindowRouter.RouteProcessName("tixati", wsNames[3]);
 	context.WindowRouter.RouteProcessName("ModOrganizer", wsNames[3]);
+	context.WindowRouter.RouteProcessName("Vortex", wsNames[3]);
 
 	/* Action menu */
 	var actionMenu = context.AddActionMenu(new ActionMenuPluginConfig()

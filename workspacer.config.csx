@@ -39,7 +39,24 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		"vlc", "steam", "calc1", "pinentry", "skyrimse", "conemu64", "steamwebhelper",
 		"mpc-hc64", "explorer", "1Password", "bitwarden", "genshinimpact", "windowspy", 
 	};
-
+	/* Lowercase */
+    string[] disallowedTitles =
+	{
+		"save as", "moving...", "copying...", "validating nexus connection", "login failed",
+	};
+    string[] disallowedClasses =
+	{
+		"ShellTrayWnd", "MozillaDialogClass",
+	};
+	/* Names of processes that should be routed to each workspace */
+	string[][] processNames =
+	{
+		new string[] { "TE64", "Explorer++", },
+		new string[] { "brave", "vivaldi", "firefox", "librewolf", },	
+		new string[] { "notepad++", "sublime_text", },	
+		new string[] { "tixati", "ModOrganizer", "Vortex", },	
+	};
+	
 	/* Config */
 	context.CanMinimizeWindows = false;
 
@@ -98,12 +115,8 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	}
 
 	/* Filters */
-	context.WindowRouter.AddFilter((window) => !window.Title.ToLower().Equals("save as"));
-	context.WindowRouter.AddFilter((window) => !window.Title.ToLower().Equals("moving..."));
-	context.WindowRouter.AddFilter((window) => !window.Title.ToLower().Equals("copying..."));
-	context.WindowRouter.AddFilter((window) => !window.Title.ToLower().Equals("validating nexus connection"));
-	context.WindowRouter.AddFilter((window) => !window.Class.Equals("ShellTrayWnd"));
-	context.WindowRouter.AddFilter((window) => !window.Class.Equals("MozillaDialogClass"));
+	context.WindowRouter.AddFilter((window) => !disallowedClasses.Contains(window.Class));
+	context.WindowRouter.AddFilter((window) => !disallowedTitles.Contains(window.Title.ToLower()));
 	if (useAllowedList) 
 	{
 		context.WindowRouter.AddFilter((window) => allowedFileNames.Contains(Path.GetFileNameWithoutExtension(window.ProcessFileName.ToLower())));
@@ -113,19 +126,14 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		context.WindowRouter.AddFilter((window) => !disallowedFileNames.Contains(Path.GetFileNameWithoutExtension(window.ProcessFileName.ToLower())));
 	}
 	
-
 	/* Routes */
-	context.WindowRouter.RouteProcessName("TE64", wsNames[0]);
-	context.WindowRouter.RouteProcessName("Explorer++", wsNames[0]);
-	context.WindowRouter.RouteProcessName("brave", wsNames[1]);
-	context.WindowRouter.RouteProcessName("vivaldi", wsNames[1]);
-	context.WindowRouter.RouteProcessName("firefox", wsNames[1]);
-	context.WindowRouter.RouteProcessName("librewolf", wsNames[1]);
-	context.WindowRouter.RouteProcessName("notepad++", wsNames[2]);
-	context.WindowRouter.RouteProcessName("sublime_text", wsNames[2]);
-	context.WindowRouter.RouteProcessName("tixati", wsNames[3]);
-	context.WindowRouter.RouteProcessName("ModOrganizer", wsNames[3]);
-	context.WindowRouter.RouteProcessName("Vortex", wsNames[3]);
+	for (int i = 0; i < processNames.Length; i++) 
+	{ 
+		for (int j = 0; j < processNames[i].Length; j++) 
+		{
+			context.WindowRouter.RouteProcessName(processNames[i][j], wsNames[i]);
+		}
+	}
 
 	/* Action menu */
 	var actionMenu = context.AddActionMenu(new ActionMenuPluginConfig()

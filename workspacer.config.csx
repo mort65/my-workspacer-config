@@ -25,6 +25,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var fontName = "Cascadia Code PL";
 	var background = new Color(0x0, 0x0, 0x0);
 	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸" };
+	/* If true only programs in allowedFileNames are managed if false all programs are managed except programs in disallowedFileNames */
 	var useAllowedList = true;
 	/* only used if useAllowedList is true (Names should be lowercase) */
 	string[] allowedFileNames = 

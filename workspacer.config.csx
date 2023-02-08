@@ -23,6 +23,8 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var barHeight = 19;
 	var fontName = "Cascadia Code PL";
 	var background = new Color(0x0, 0x0, 0x0);
+	//var transparencykey = new Color(0x0, 0xF, 0x0);
+	//var istransparent = false;
 	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸" };
 	/* If true only programs in allowedFileNames are managed if false all programs are managed except programs in disallowedFileNames */
 	var useAllowedList = true;
@@ -70,6 +72,8 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		BarHeight = barHeight,
 		FontName = fontName,
 		DefaultWidgetBackground = background,
+		//IsTransparent = istransparent,
+		//TransparencyKey = transparencykey,
 		LeftWidgets = () => new IBarWidget[]
 		{
 			new WorkspaceWidget(), new TextWidget(": "), new TitleWidget() {
@@ -79,6 +83,9 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		RightWidgets = () => new IBarWidget[]
 		{
 			//new BatteryWidget(),
+			//new CpuPerformanceWidget(),
+			//new MemoryPerformanceWidget(),
+			//new NetworkPerformanceWidget(),
 			new TimeWidget(1000, "ddd dd MMM HH:mm:ss"),
 			new ActiveLayoutWidget(),
 		}
@@ -91,6 +98,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	Func<ILayoutEngine[]> defaultLayouts = () => new ILayoutEngine[]
 	{
 		new TallLayoutEngine(),
+		//new DwindleLayoutEngine(),
 		new VertLayoutEngine(),
 		new HorzLayoutEngine(),
 		new FullLayoutEngine(),

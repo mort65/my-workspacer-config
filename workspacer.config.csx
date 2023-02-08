@@ -47,7 +47,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	};
 	string[] disallowedClasses =
 	{
-		"ShellTrayWnd", "MozillaDialogClass",
+		"ShellTrayWnd", "MozillaDialogClass", "OperationStatusWindow",
 	};
 	/* Names of processes that should be routed to each workspace */
 	string[][] processNames =

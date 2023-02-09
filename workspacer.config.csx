@@ -25,7 +25,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var background = new Color(0x0, 0x0, 0x0);
 	var wsHasFocuscolor = new Color(0xEE, 0x82, 0xEE);
 	var wsEmptyColor = new Color(0x95, 0x95, 0x95);
-    var wsIndicatingBackColor = Color.Teal;
+	var wsIndicatingBackColor = Color.Teal;
 	var wsBlinkPeriod = 1000;
 	//var transparencykey = new Color(0x0, 0xF, 0x0);
 	//var istransparent = false;
@@ -83,7 +83,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 			new WorkspaceWidget() {
 				WorkspaceHasFocusColor = wsHasFocuscolor,
 				WorkspaceEmptyColor = wsEmptyColor,
-                WorkspaceIndicatingBackColor = wsIndicatingBackColor,
+				WorkspaceIndicatingBackColor = wsIndicatingBackColor,
 				BlinkPeriod = wsBlinkPeriod,
 			}, 
 			new TextWidget(": "), 

@@ -20,7 +20,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 {
 	/* Variables */
 	var fontSize = 9;
-	var barHeight = 19;
+	var barHeight = 18;
 	//var fontName = "Cascadia Code PL";
 	var fontName = "Fantasque Sans Mono";
 	var background = new Color(0x0, 0x0, 0x0);
@@ -67,7 +67,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	context.CanMinimizeWindows = false;
 
 	/* Gap */
-	var gap = barHeight - 10;
+	var gap = barHeight - 12;
 	var gapPlugin = context.AddGap(new GapPluginConfig() { InnerGap = gap, OuterGap = gap / 2, Delta = gap / 2 });
 
 	/* Bar */

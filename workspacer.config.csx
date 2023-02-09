@@ -23,6 +23,10 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var barHeight = 19;
 	var fontName = "Cascadia Code PL";
 	var background = new Color(0x0, 0x0, 0x0);
+	var wsHasFocuscolor = new Color(0xEE, 0x82, 0xEE);
+	var wsEmptyColor = new Color(0x95, 0x95, 0x95);
+    var wsIndicatingBackColor = Color.Teal;
+	var wsBlinkPeriod = 1000;
 	//var transparencykey = new Color(0x0, 0xF, 0x0);
 	//var istransparent = false;
 	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸" };
@@ -76,9 +80,16 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		//TransparencyKey = transparencykey,
 		LeftWidgets = () => new IBarWidget[]
 		{
-			new WorkspaceWidget(), new TextWidget(": "), new TitleWidget() {
+			new WorkspaceWidget() {
+				WorkspaceHasFocusColor = wsHasFocuscolor,
+				WorkspaceEmptyColor = wsEmptyColor,
+                WorkspaceIndicatingBackColor = wsIndicatingBackColor,
+				BlinkPeriod = wsBlinkPeriod,
+			}, 
+			new TextWidget(": "), 
+			new TitleWidget() {
 				IsShortTitle = true
-			}
+			},
 		},
 		RightWidgets = () => new IBarWidget[]
 		{
@@ -86,7 +97,9 @@ return new Action<IConfigContext>((IConfigContext context) =>
 			//new CpuPerformanceWidget(),
 			//new MemoryPerformanceWidget(),
 			//new NetworkPerformanceWidget(),
-			new TimeWidget(1000, "ddd dd MMM HH:mm:ss"),
+			new TextWidget(" |"),
+			new TimeWidget(1000, "ddd dd-MMM-yyyy & HH:mm:ss"),
+			new TextWidget("| "),
 			new ActiveLayoutWidget(),
 		}
 	});

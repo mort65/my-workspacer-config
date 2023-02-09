@@ -21,7 +21,8 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	/* Variables */
 	var fontSize = 9;
 	var barHeight = 19;
-	var fontName = "Cascadia Code PL";
+	//var fontName = "Cascadia Code PL";
+	var fontName = "Fantasque Sans Mono";
 	var background = new Color(0x0, 0x0, 0x0);
 	var wsHasFocuscolor = new Color(0xEE, 0x82, 0xEE);
 	var wsEmptyColor = new Color(0x95, 0x95, 0x95);
@@ -86,7 +87,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 				WorkspaceIndicatingBackColor = wsIndicatingBackColor,
 				BlinkPeriod = wsBlinkPeriod,
 			}, 
-			new TextWidget(": "), 
+			new TextWidget(" ►"), 
 			new TitleWidget() {
 				IsShortTitle = true
 			},

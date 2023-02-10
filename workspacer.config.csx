@@ -15,6 +15,7 @@ using workspacer.Bar.Widgets;
 using workspacer.Gap;
 using workspacer.ActionMenu;
 using workspacer.FocusIndicator;
+//using workspacer.TitleBar;
 
 return new Action<IConfigContext>((IConfigContext context) =>
 {
@@ -28,6 +29,8 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var wsEmptyColor = new Color(0x95, 0x95, 0x95);
 	var wsIndicatingBackColor = Color.Teal;
 	var wsBlinkPeriod = 1000;
+	//var winShowTitleBar = true;
+	//var winShowSizingBorder = true;
 	//var transparencykey = new Color(0x0, 0xF, 0x0);
 	//var istransparent = false;
 	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸" };
@@ -70,6 +73,14 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var gap = barHeight - 12;
 	var gapPlugin = context.AddGap(new GapPluginConfig() { InnerGap = gap, OuterGap = gap / 2, Delta = gap / 2 });
 
+	/* Title */
+	//var titleBarPluginConfig = new TitleBarPluginConfig(new TitleBarStyle(showTitleBar: winShowTitleBar, showSizingBorder: winShowSizingBorder));
+	//context.AddTitleBar(titleBarPluginConfig);
+	//var titleBarPluginConfig = new TitleBarPluginConfig();
+	//titleBarPluginConfig.SetWindowProcessName("Notepad", new TitleBarStyle(showTitleBar: false, showSizingBorder: false));
+	//titleBarPluginConfig.SetWindowClass("Notepad++", new TitleBarStyle(showTitleBar: false, showSizingBorder: false));
+	//context.AddTitleBar(titleBarPluginConfig);
+	
 	/* Bar */
 	context.AddBar(new BarPluginConfig()
 	{
@@ -310,9 +321,9 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		manager.Subscribe(winShift, Keys.D8, () => context.Workspaces.MoveFocusedWindowToWorkspace(7), "switch focused window to workspace 8");
 		manager.Subscribe(winShift, Keys.D9, () => context.Workspaces.MoveFocusedWindowToWorkspace(8), "switch focused window to workspace 9");
 		manager.Subscribe(winShift, Keys.D0, () => context.Workspaces.MoveFocusedWindowToWorkspace(9), "switch focused window to workspace 10");
-		manager.Subscribe(winCtrl, Keys.X, () => Process.Start("C:\\Program Files\\AutoHotkey\\WindowSpy.exe"), "start \"Window Spy\"");
 		manager.Subscribe(winCtrl, Keys.E, () => context.Windows.ToggleFocusedWindowTiling(), "toggle focused window tiling");
-
+		manager.Subscribe(winCtrl, Keys.Q, () => context.Workspaces.FocusedWorkspace.CloseFocusedWindow(), "close focused window");
+		manager.Subscribe(winCtrl, Keys.X, () => Process.Start("C:\\Program Files\\AutoHotkey\\WindowSpy.exe"), "start \"Window Spy\"");
 	};
 	setKeybindings();
 });

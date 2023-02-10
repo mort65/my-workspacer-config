@@ -311,6 +311,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		manager.Subscribe(winShift, Keys.D9, () => context.Workspaces.MoveFocusedWindowToWorkspace(8), "switch focused window to workspace 9");
 		manager.Subscribe(winShift, Keys.D0, () => context.Workspaces.MoveFocusedWindowToWorkspace(9), "switch focused window to workspace 10");
 		manager.Subscribe(winCtrl, Keys.X, () => Process.Start("C:\\Program Files\\AutoHotkey\\WindowSpy.exe"), "start \"Window Spy\"");
+		manager.Subscribe(winCtrl, Keys.E, () => context.Windows.ToggleFocusedWindowTiling(), "toggle focused window tiling");
 
 	};
 	setKeybindings();

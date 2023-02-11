@@ -40,7 +40,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	string[] allowedFileNames =
 	{
 		"te64", "brave", "vivaldi", "explorer++", "firefox", "librewolf", "notepad++",
-		"sublime_text", "tixati", "modorganizer", "notepad", "vortex",
+		"sublime_text", "tixati", "modorganizer", "notepad", "vortex", "onecommander",
 	};
 	/* only used if useAllowedList is false (Names should be lowercase) */
 	string[] disallowedFileNames =
@@ -60,7 +60,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	/* Names of processes that should be routed to each workspace */
 	string[][] processNames =
 	{
-		new string[] { "TE64", "Explorer++", },
+		new string[] { "TE64", "Explorer++", "OneCommander", },
 		new string[] { "brave", "vivaldi", "firefox", "librewolf", },
 		new string[] { "notepad++", "sublime_text", },
 		new string[] { "tixati", "ModOrganizer", "Vortex", },

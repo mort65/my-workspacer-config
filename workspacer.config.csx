@@ -66,7 +66,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	};
 	var winShowTitleBar = true;
 	var winShowSizingBorder = true;
-	/* Titlebar and sizing border for specific class named */
+	/* Titlebar and sizing border for specific class names */
 	(string, bool, bool)[] classWinTitleStyle =
 	{
 		( "Notepad++", false, false ),		

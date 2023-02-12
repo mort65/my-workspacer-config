@@ -45,7 +45,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	/* only used if useAllowedList is false (Names should be lowercase) */
 	string[] disallowedFileNames =
 	{
-		"vlc", "steam", "calc1", "pinentry", "skyrimse", "conemu64", "steamwebhelper",
+		"vlc", "steam", "calc1", "pinentry", "skyrimse", "conemu64", "steamwebhelper", "tago-fences",
 		"mpc-hc64", "explorer", "1Password", "bitwarden", "genshinimpact", "windowspy",
 	};
 	/* Lowercase */

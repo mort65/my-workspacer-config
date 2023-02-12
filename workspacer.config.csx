@@ -76,7 +76,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 
 	/* Title */
 	var titleBarPluginConfig = new TitleBarPluginConfig(new TitleBarStyle(showTitleBar: winShowTitleBar, showSizingBorder: winShowSizingBorder));
-	//titleBarPluginConfig.SetWindowProcessName("notepad", new TitleBarStyle(showTitleBar: false, showSizingBorder: false));
+	titleBarPluginConfig.SetWindowProcessName("sublime_text", new TitleBarStyle(showTitleBar: false, showSizingBorder: false));
 	titleBarPluginConfig.SetWindowClass("Notepad++", new TitleBarStyle(showTitleBar: false, showSizingBorder: false));
 	context.AddTitleBar(titleBarPluginConfig);
 	

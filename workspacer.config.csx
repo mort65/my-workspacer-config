@@ -283,12 +283,15 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		manager.Subscribe(MouseEvent.LButtonDown, () => workspaces.SwitchFocusedMonitorToMouseLocation());
 
 		// Left, Right keys
-		manager.Subscribe(winCtrl, Keys.Left, () => workspaces.SwitchToPreviousWorkspace(), "switch to previous workspace");
-		manager.Subscribe(winCtrl, Keys.Right, () => workspaces.SwitchToNextWorkspace(), "switch to next workspace");
+		manager.Subscribe(win, Keys.Left, () => workspaces.SwitchToPreviousWorkspace(), "switch to previous workspace");
+		manager.Subscribe(win, Keys.Right, () => workspaces.SwitchToNextWorkspace(), "switch to next workspace");
 
-		manager.Subscribe(winShift, Keys.Left, () => workspaces.MoveFocusedWindowToPreviousMonitor(), "move focused window to previous monitor");
-		manager.Subscribe(winShift, Keys.Right, () => workspaces.MoveFocusedWindowToNextMonitor(), "move focused window to next monitor");
-
+		manager.Subscribe(winCtrl, Keys.Left, () => workspaces.MoveFocusedWindowToPreviousMonitor(), "move focused window to previous monitor");
+		manager.Subscribe(winCtrl, Keys.Right, () => workspaces.MoveFocusedWindowToNextMonitor(), "move focused window to next monitor");
+		
+		manager.Subscribe(winShift, Keys.Left, () => workspaces.MoveFocusedWindowAndSwitchToPreviousWorkspace(), "move window to previous workspace and switch to it");
+		manager.Subscribe(winShift, Keys.Right, () => workspaces.MoveFocusedWindowAndSwitchToNextWorkspace(), "move window to next workspace and switch to it");
+		
 		// H, L keys
 		manager.Subscribe(winShift, Keys.H, () => workspaces.FocusedWorkspace.ShrinkPrimaryArea(), "shrink primary area");
 		manager.Subscribe(winShift, Keys.L, () => workspaces.FocusedWorkspace.ExpandPrimaryArea(), "expand primary area");
@@ -315,6 +318,8 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		manager.Subscribe(winCtrl, Keys.P, () => actionMenu.ShowMenu(actionMenuBuilder), "show menu");
 		manager.Subscribe(winShift, Keys.Escape, () => context.Enabled = !context.Enabled, "toggle enabled/disabled");
 		manager.Subscribe(winShift, Keys.I, () => context.ToggleConsoleWindow(), "toggle console window");
+		//manager.Subscribe(winShift, Keys.O, () => context.Windows.DumpWindowUnderCursorDebugOutput(), "dump debug info to console for window under cursor");
+		//manager.Subscribe(winCtrl, Keys.O, () => context.Windows.DumpWindowDebugOutput(), "dump debug info to console for all windows");
 		manager.Subscribe(winShift, Keys.Enter, () => context.Workspaces.FocusedWorkspace.SwapFocusAndPrimaryWindow(), "swap focus and primary window");
 		manager.Subscribe(winCtrl, Keys.Space, () => context.Workspaces.FocusedWorkspace.NextLayoutEngine(), "next layout");
 		manager.Subscribe(winShift, Keys.Space, () => context.Workspaces.FocusedWorkspace.PreviousLayoutEngine(), "previous layout");
@@ -328,16 +333,16 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		manager.Subscribe(win, Keys.D8, () => context.Workspaces.SwitchToWorkspace(7), "switch to workspace 8");
 		manager.Subscribe(win, Keys.D9, () => context.Workspaces.SwitchToWorkspace(8), "switch to workspace 9");
 		manager.Subscribe(win, Keys.D0, () => context.Workspaces.SwitchToWorkspace(9), "switch to workspace 10");
-		manager.Subscribe(winShift, Keys.D1, () => context.Workspaces.MoveFocusedWindowToWorkspace(0), "switch focused window to workspace 1");
-		manager.Subscribe(winShift, Keys.D2, () => context.Workspaces.MoveFocusedWindowToWorkspace(1), "switch focused window to workspace 2");
-		manager.Subscribe(winShift, Keys.D3, () => context.Workspaces.MoveFocusedWindowToWorkspace(2), "switch focused window to workspace 3");
-		manager.Subscribe(winShift, Keys.D4, () => context.Workspaces.MoveFocusedWindowToWorkspace(3), "switch focused window to workspace 4");
-		manager.Subscribe(winShift, Keys.D5, () => context.Workspaces.MoveFocusedWindowToWorkspace(4), "switch focused window to workspace 5");
-		manager.Subscribe(winShift, Keys.D6, () => context.Workspaces.MoveFocusedWindowToWorkspace(5), "switch focused window to workspace 6");
-		manager.Subscribe(winShift, Keys.D7, () => context.Workspaces.MoveFocusedWindowToWorkspace(6), "switch focused window to workspace 7");
-		manager.Subscribe(winShift, Keys.D8, () => context.Workspaces.MoveFocusedWindowToWorkspace(7), "switch focused window to workspace 8");
-		manager.Subscribe(winShift, Keys.D9, () => context.Workspaces.MoveFocusedWindowToWorkspace(8), "switch focused window to workspace 9");
-		manager.Subscribe(winShift, Keys.D0, () => context.Workspaces.MoveFocusedWindowToWorkspace(9), "switch focused window to workspace 10");
+		manager.Subscribe(winShift, Keys.D1, () => context.Workspaces.MoveFocusedWindowToWorkspace(0), "move focused window to workspace 1");
+		manager.Subscribe(winShift, Keys.D2, () => context.Workspaces.MoveFocusedWindowToWorkspace(1), "move focused window to workspace 2");
+		manager.Subscribe(winShift, Keys.D3, () => context.Workspaces.MoveFocusedWindowToWorkspace(2), "move focused window to workspace 3");
+		manager.Subscribe(winShift, Keys.D4, () => context.Workspaces.MoveFocusedWindowToWorkspace(3), "move focused window to workspace 4");
+		manager.Subscribe(winShift, Keys.D5, () => context.Workspaces.MoveFocusedWindowToWorkspace(4), "move focused window to workspace 5");
+		manager.Subscribe(winShift, Keys.D6, () => context.Workspaces.MoveFocusedWindowToWorkspace(5), "move focused window to workspace 6");
+		manager.Subscribe(winShift, Keys.D7, () => context.Workspaces.MoveFocusedWindowToWorkspace(6), "move focused window to workspace 7");
+		manager.Subscribe(winShift, Keys.D8, () => context.Workspaces.MoveFocusedWindowToWorkspace(7), "move focused window to workspace 8");
+		manager.Subscribe(winShift, Keys.D9, () => context.Workspaces.MoveFocusedWindowToWorkspace(8), "move focused window to workspace 9");
+		manager.Subscribe(winShift, Keys.D0, () => context.Workspaces.MoveFocusedWindowToWorkspace(9), "move focused window to workspace 10");
 		manager.Subscribe(winCtrl, Keys.E, () => context.Windows.ToggleFocusedWindowTiling(), "toggle focused window tiling");
 		manager.Subscribe(winCtrl, Keys.Q, () => context.Workspaces.FocusedWorkspace.CloseFocusedWindow(), "close focused window");
 		manager.Subscribe(winCtrl, Keys.X, () => Process.Start("C:\\Program Files\\AutoHotkey\\WindowSpy.exe"), "start \"Window Spy\"");

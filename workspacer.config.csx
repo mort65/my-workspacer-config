@@ -30,8 +30,6 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var wsEmptyColor = new Color(0x95, 0x95, 0x95);
 	var wsIndicatingBackColor = Color.Teal;
 	var wsBlinkPeriod = 1000;
-	var winShowTitleBar = true;
-	var winShowSizingBorder = true;
 	//var transparencykey = new Color(0x0, 0xF, 0x0);
 	//var istransparent = false;
 	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸" };
@@ -66,6 +64,18 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		new string[] { "notepad++", "sublime_text", },
 		new string[] { "tixati", "ModOrganizer", "Vortex", "AIMP", },
 	};
+	var winShowTitleBar = true;
+	var winShowSizingBorder = true;
+	/* Titlebar and sizing border for specific class named */
+	(string, bool, bool)[] classWinTitleStyle =
+	{
+		( "Notepad++", false, false ),		
+	};
+	/* Titlebar and sizing border for specific process names */
+	(string, bool, bool)[] processWinTitleStyle =
+	{
+		( "sublime_text", false, false ),		
+	};
 
 	/* Config */
 	context.CanMinimizeWindows = false;
@@ -76,8 +86,14 @@ return new Action<IConfigContext>((IConfigContext context) =>
 
 	/* Title */
 	var titleBarPluginConfig = new TitleBarPluginConfig(new TitleBarStyle(showTitleBar: winShowTitleBar, showSizingBorder: winShowSizingBorder));
-	titleBarPluginConfig.SetWindowProcessName("sublime_text", new TitleBarStyle(showTitleBar: false, showSizingBorder: false));
-	titleBarPluginConfig.SetWindowClass("Notepad++", new TitleBarStyle(showTitleBar: false, showSizingBorder: false));
+	foreach ((string className, bool hasTitle, bool hasBorder) in classWinTitleStyle)
+	{
+		titleBarPluginConfig.SetWindowClass(className, new TitleBarStyle(showTitleBar: hasTitle, showSizingBorder: hasBorder));	
+	}
+	foreach ((string processName, bool hasTitle, bool hasBorder) in processWinTitleStyle)
+	{
+		titleBarPluginConfig.SetWindowProcessName(processName, new TitleBarStyle(showTitleBar: hasTitle, showSizingBorder: hasBorder));	
+	}
 	context.AddTitleBar(titleBarPluginConfig);
 	
 	/* Bar */

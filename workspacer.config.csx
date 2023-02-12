@@ -126,7 +126,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 			//new MemoryPerformanceWidget(),
 			//new NetworkPerformanceWidget(),
 			new TextWidget(" |"),
-			new TimeWidget(1000, "ddd dd-MMM-yyyy & HH:mm:ss"),
+			new TimeWidget(1000, "ddd dd-MMM-yyyy HH:mm:ss"),
 			new TextWidget("| "),
 			new ActiveLayoutWidget(),
 		}

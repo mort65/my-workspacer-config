@@ -32,7 +32,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var wsBlinkPeriod = 1000;
 	//var transparencykey = new Color(0x0, 0xF, 0x0);
 	//var istransparent = false;
-	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸", "5: #", };
+	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸", "5: ◇", };
 	/* If true only programs in allowedFileNames are managed if false all programs are managed except programs in disallowedFileNames */
 	var useAllowedList = true;
 	/* only used if useAllowedList is true (Names should be lowercase) */

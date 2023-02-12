@@ -32,7 +32,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var wsBlinkPeriod = 1000;
 	//var transparencykey = new Color(0x0, 0xF, 0x0);
 	//var istransparent = false;
-	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸" };
+	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸", "5: #", };
 	/* If true only programs in allowedFileNames are managed if false all programs are managed except programs in disallowedFileNames */
 	var useAllowedList = true;
 	/* only used if useAllowedList is true (Names should be lowercase) */
@@ -63,6 +63,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		new string[] { "brave", "vivaldi", "firefox", "librewolf", },
 		new string[] { "notepad++", "sublime_text", },
 		new string[] { "tixati", "ModOrganizer", "Vortex", "AIMP", },
+		new string[] {},
 	};
 	var winShowTitleBar = true;
 	var winShowSizingBorder = true;
@@ -154,6 +155,7 @@ return new Action<IConfigContext>((IConfigContext context) =>
 		(wsNames[1], defaultLayouts()),
 		(wsNames[2], defaultLayouts()),
 		(wsNames[3], defaultLayouts()),
+		(wsNames[4], defaultLayouts()),
 	};
 
 	foreach ((string name, ILayoutEngine[] layouts) in workspaces)

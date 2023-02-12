@@ -1,6 +1,7 @@
 #r "C:\Program Files\workspacer\workspacer.Shared.dll"
 #r "C:\Program Files\workspacer\plugins\workspacer.Bar\workspacer.Bar.dll"
 #r "C:\Program Files\workspacer\plugins\workspacer.Gap\workspacer.Gap.dll"
+#r "C:\Program Files\workspacer\plugins\workspacer.TitleBar\workspacer.TitleBar.dll"
 #r "C:\Program Files\workspacer\plugins\workspacer.ActionMenu\workspacer.ActionMenu.dll"
 #r "C:\Program Files\workspacer\plugins\workspacer.FocusIndicator\workspacer.FocusIndicator.dll"
 
@@ -15,7 +16,7 @@ using workspacer.Bar.Widgets;
 using workspacer.Gap;
 using workspacer.ActionMenu;
 using workspacer.FocusIndicator;
-//using workspacer.TitleBar;
+using workspacer.TitleBar;
 
 return new Action<IConfigContext>((IConfigContext context) =>
 {
@@ -29,8 +30,8 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var wsEmptyColor = new Color(0x95, 0x95, 0x95);
 	var wsIndicatingBackColor = Color.Teal;
 	var wsBlinkPeriod = 1000;
-	//var winShowTitleBar = true;
-	//var winShowSizingBorder = true;
+	var winShowTitleBar = true;
+	var winShowSizingBorder = true;
 	//var transparencykey = new Color(0x0, 0xF, 0x0);
 	//var istransparent = false;
 	string[] wsNames = { "1: 🏠", "2: 🌎", "3: 📃", "4: 🌸" };
@@ -74,12 +75,10 @@ return new Action<IConfigContext>((IConfigContext context) =>
 	var gapPlugin = context.AddGap(new GapPluginConfig() { InnerGap = gap, OuterGap = gap / 2, Delta = gap / 2 });
 
 	/* Title */
-	//var titleBarPluginConfig = new TitleBarPluginConfig(new TitleBarStyle(showTitleBar: winShowTitleBar, showSizingBorder: winShowSizingBorder));
-	//context.AddTitleBar(titleBarPluginConfig);
-	//var titleBarPluginConfig = new TitleBarPluginConfig();
-	//titleBarPluginConfig.SetWindowProcessName("Notepad", new TitleBarStyle(showTitleBar: false, showSizingBorder: false));
-	//titleBarPluginConfig.SetWindowClass("Notepad++", new TitleBarStyle(showTitleBar: false, showSizingBorder: false));
-	//context.AddTitleBar(titleBarPluginConfig);
+	var titleBarPluginConfig = new TitleBarPluginConfig(new TitleBarStyle(showTitleBar: winShowTitleBar, showSizingBorder: winShowSizingBorder));
+	//titleBarPluginConfig.SetWindowProcessName("notepad", new TitleBarStyle(showTitleBar: false, showSizingBorder: false));
+	titleBarPluginConfig.SetWindowClass("Notepad++", new TitleBarStyle(showTitleBar: false, showSizingBorder: false));
+	context.AddTitleBar(titleBarPluginConfig);
 	
 	/* Bar */
 	context.AddBar(new BarPluginConfig()
